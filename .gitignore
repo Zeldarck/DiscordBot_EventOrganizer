@@ -1,3 +1,7 @@
+dbDiscordBot.db
+variable.js
+.vs/*
+
 # Logs
 logs
 *.log
