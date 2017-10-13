@@ -13,10 +13,13 @@ module.exports = class CreateEvent extends Commands {
 	static Action(message) {
 		let args = message.content.split(' ');
 		if (args.length != 4) {
-			message.reply('Mauvaise syntaxe : /createEvent nom jj/mm/aaaa hh:mm');
+			message.reply('Mauvaise syntaxe : /createEvent nom dd/mm/aaaa hh:mm');
 		} else {
-			let main = args[2].split('/');
-			let extension = args[3].split(':');
+            let main = args[2].split('/');
+            let extension = args[3].split(':');
+            if (extension.length != 2 || main.length != 3) {
+                message.reply('Mauvaise syntaxe : /createEvent nom dd/mm/aaaa hh:mm');
+            }
             let date = new Date(main[2], main[1]-1, main[0], extension[0], extension[1]);
             DBConnector.CreateEvent(args[1], date.getTime(), message.author, function (id) {
                 message.channel.send("@everyone, nouvel évènement "+ id);
