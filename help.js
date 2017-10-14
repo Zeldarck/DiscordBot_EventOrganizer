@@ -14,7 +14,7 @@ module.exports = class Help extends Commands {
         message.author.send("Commandes disponibles : "
             + "\n/join id - pour rejoindre un évènement,"
             + "\n/help - affiche l'aide,"
-            + "\n/quit id - pour dire qu'on peut pas participer à un évènement,"
+            + "\n/quit id [raison]- pour dire qu'on peut pas participer à un évènement,"
             + "\n/createEvents nom dd/mm/yyyy hh:mm - pour crée un évènement- attention, pas d'espaces dans le nom,"
             + "\n/see id - pour voir les infos d'un évènement,"
             + "\n/seeEvents - pour voir tout les évènement à venir,"

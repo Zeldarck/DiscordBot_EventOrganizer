@@ -59,8 +59,8 @@ setInterval(function () {
 
             }
 
-            if (diff < 1000 * 60 * 60 * 24 && row.alertId < 4) {
-                channel.send("L'évènement " + row.id + " se déroule dans moins de 24h");
+            if (diff < 1000 * 60 * 60 * 36 && row.alertId < 4) {
+                channel.send("L'évènement " + row.id + " se déroule dans moins de 36h");
                 DBConnector.SetAlertID(row.userId, row.id, 4);
             } else if (diff < 1000 * 60 * 60 * 24 * 3 && row.alertId < 3) {
                 channel.send("L'évènement " + row.id + " se déroule dans moins de 3 jours");
