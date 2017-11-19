@@ -12,16 +12,23 @@ module.exports = class CreateEvent extends Commands {
 
 	static Action(message) {
 		let args = message.content.split(' ');
-		if (args.length != 4) {
-			message.author.send('Mauvaise syntaxe : /createEvent nom dd/mm/aaaa hh:mm');
+		if (args.length < 4) {
+            message.author.send('Mauvaise syntaxe : /createEvent dd/mm/aaaa hh:mm nom');
 		} else {
-            let main = args[2].split('/');
-            let extension = args[3].split(':');
+            let main = args[1].split('/');
+            let extension = args[2].split(':');
             if (extension.length != 2 || main.length != 3) {
-                message.author.send('Mauvaise syntaxe : /createEvent nom dd/mm/aaaa hh:mm');
+                message.author.send('Mauvaise syntaxe : /createEvent dd/mm/aaaa hh:mm nom');
             }
-            let date = new Date(main[2], main[1]-1, main[0], extension[0], extension[1]);
-            DBConnector.CreateEvent(args[1], date.getTime(), message.author, function (id) {
+            let date = new Date(main[2], main[1] - 1, main[0], extension[0], extension[1]);
+
+            let name = "";
+            for (let i = 3; i < args.length; i++) {
+                name += args[i] + " ";
+            }
+
+
+            DBConnector.CreateEvent(name, date.getTime(), message.author, function (id) {
                 message.channel.send("@everyone, nouvel évènement "+ id);
                 Commands.DisplayEvent(id, message.channel);
 

@@ -30,16 +30,16 @@ module.exports = class Commands {
     static DisplayEvent(eventId, channel) {
         DBConnector.SeeEvent(eventId, function (event, players, unplayers) {
             if (event) {
-                var res = "\nEvènement " + event.id + " : ";
+                var res = "\nEvènement **" + event.id + "** : ";
                 let date = new Date(event.date*1);
 
-                res += "\n" + event.name + " le " + date.getDate().pad(2) + "/" + (date.getMonth() + 1).pad(2) + "/" + date.getFullYear() + " à " +
+                res += "\n**" + event.name + "** le " + date.getDate().pad(2) + "/" + (date.getMonth() + 1).pad(2) + "/" + date.getFullYear() + " à " +
                     date.getHours().pad(2) + ":" + date.getMinutes().pad(2) + " crée par " + event.creator;
-                res += "\nParticipants [" + players.length + "]: ";
+                res += "\n*Participants* [**" + players.length + "**]: \n";
                 players.forEach((player) => {
-                    res += player.name + ",";
+                    res += "**- **" + player.name + ",\n";
                 });
-                res += "\nNe peut pas Participer [" + unplayers.length + "]: ";
+                res += "*Ne peut pas Participer* [**" + unplayers.length + "**]: ";
                 unplayers.forEach((player) => {
                     res += player.name + ",";
                 });

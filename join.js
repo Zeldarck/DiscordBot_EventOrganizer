@@ -13,8 +13,8 @@ module.exports = class Join extends Commands {
     static Action(message) {
 
 		let args = message.content.split(' ');
-		if (args.length != 2) {
-			message.reply('Mauvaise syntaxe : /join EventId');
+        if (args.length != 2) {
+            message.author.send('Mauvaise syntaxe : /join EventId');
         } else {
             message.author.createDM().then(function (dm) {
                 DBConnector.JoinEvent(args[1], message.author, dm, function (id) {

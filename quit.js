@@ -5,15 +5,15 @@ module.exports = class Quit extends Commands {
 	
 
 	static Match(message) {
-		return message.content.startsWith('/quit');
+        return message.content.startsWith('/quit') || message.content.startsWith('/leave');
 
 	}
 
 
 	static Action(message) {
 		let args = message.content.split(' ');
-		if (args.length < 2) {
-			message.reply('Mauvaise syntaxe : /quit EventId');
+        if (args.length < 2) {
+            message.author.send('Mauvaise syntaxe : /quit EventId');
 		} else {
             DBConnector.QuitEvent(args[1], message.author, function (id) {
                 let why = "";
@@ -22,7 +22,7 @@ module.exports = class Quit extends Commands {
                 }
                 let raison = ((why == "") ? "" : (" - raison : " + why));
                 message.channel.send(message.author.tag + " a quitté l'évènement " + id + raison );
-                Commands.DisplayEvent(id,message.channel);
+                //Commands.DisplayEvent(id,message.channel);
 			});
 		}
 	}

@@ -13,7 +13,7 @@ module.exports = class See extends Commands {
 	static Action(message) {
 		let args = message.content.split(' ');
 		if (args.length != 2) {
-			message.reply('Mauvaise syntaxe : /see EventId');
+			message.author.send('Mauvaise syntaxe : /see EventId');
         } else {
             this.DisplayEvent(args[1], message.author);
 		}
